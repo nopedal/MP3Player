@@ -4,11 +4,11 @@ const playIcon = document.getElementById('play-icon');
 const progressBar = document.getElementById('progress');
 const currentTimeElem = document.getElementById('current-time');
 const durationElem = document.getElementById('duration');
-const albumArt = document.getElementById('album-art'); // Add this line
-const trackTitle = document.getElementById('track-title'); // Add this line
-const artistName = document.getElementById('artist-name'); // Add this line
-const nextBtn = document.getElementById('next-btn'); // Add this line
-const prevBtn = document.getElementById('prev-btn'); // Add this line
+const albumArt = document.getElementById('album-art'); 
+const trackTitle = document.getElementById('track-title'); 
+const artistName = document.getElementById('artist-name'); 
+const nextBtn = document.getElementById('next-btn'); 
+const prevBtn = document.getElementById('prev-btn'); 
 
 let isPlaying = false;
 let currentTrackIndex = 0;
@@ -27,6 +27,12 @@ const tracks = [
         albumArt: "imgs/LIH.jfif", // 
         src: "music/Let It Happen - Tame Impala.mp3" // 
     },
+    {
+        title: "Get Lucky",
+        artist: "Daft Punk",
+        albumArt: "imgs/dp.jfif",
+        src: "music/Get Lucky - Daft Punk.mp3"
+    }
     // Add more tracks as needed
 ];
 
