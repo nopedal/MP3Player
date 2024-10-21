@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify-Like MP3 Player</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Material Icons Link -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="player-container">
+        <div class="album-art">
+            <img id="album-art" src="imgs/dp.jfif" alt="Album Art">
+        </div>
+        <div class="track-info">
+            <h2 id="track-title">Instant Crush</h2>
+            <p id="artist-name">Daft Punk</p>
+        </div>
+        <div class="controls">
+            <button id="prev-btn" class="control-btn">
+                <span class="material-icons">skip_previous</span>
+            </button>
+            <button id="play-btn" class="control-btn">
+                <span class="material-icons" id="play-icon">play_arrow</span>
+            </button>
+            <button id="next-btn" class="control-btn">
+                <span class="material-icons">skip_next</span>
+            </button>
+        </div>
+        <div class="progress-bar">
+            <span id="current-time">0:00</span>
+            <input type="range" id="progress" value="0" max="100">
+            <span id="duration">0:00</span>
+        </div>
+        <audio id="audio-player">
+            <source src="music/Instant Crush - Daft Punk.mp3" type="audio/mp3">
+        </audio>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
