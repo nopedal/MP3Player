@@ -1,6 +1,6 @@
 /* General body styling */
 body {
-    background-color: #121212;
+    background-color: #181818;
     color: white;
     font-family: 'Arial', sans-serif;
     display: flex;
@@ -21,8 +21,8 @@ body {
     z-index: 0;
     background-size: cover;
     background-position: center;
-    filter: blur(10px);
-    opacity: 0.3;
+    filter: blur(20px);
+    opacity: 0.4;
 }
 
 /* Player container styling */
@@ -30,45 +30,49 @@ body {
     position: relative;
     z-index: 1;
     background-color: #282828;
-    border-radius: 20px;
-    padding: 30px;
+    border-radius: 16px;
+    padding: 20px;
     text-align: center;
     width: 350px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
 }
 
+/* Album art styling */
 .album-art img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    margin-bottom: 20px;
+    width: 220px;
+    height: 220px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6);
 }
 
-.track-info {
-    margin-bottom: 20px;
-}
-
+/* Track info styling */
 .track-info h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 500;
     margin: 0;
 }
 
 .track-info p {
-    font-size: 1rem;
-    margin: 0;
+    font-size: 0.9rem;
     color: #b3b3b3;
+    margin-top: 5px;
 }
 
+/* Control buttons styling */
 .controls {
-    margin-bottom: 20px;
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .control-btn {
     background: none;
     border: none;
     color: white;
-    font-size: 1.5rem;
-    margin: 0 10px;
+    font-size: 2rem;
+    margin: 0 15px;
     cursor: pointer;
 }
 
@@ -76,25 +80,62 @@ body {
     color: #1DB954;
 }
 
+/* Progress bar styling */
 .progress-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    margin: 10px 0;
 }
 
 input[type="range"] {
     width: 70%;
     -webkit-appearance: none;
     appearance: none;
-    background-color: #b3b3b3;
-    height: 3px;
+    background-color: #535353;
+    height: 5px;
     border-radius: 5px;
     outline: none;
     cursor: pointer;
 }
 
 input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: #1DB954;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Volume control styling */
+.volume-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.volume-control .material-icons {
+    font-size: 1.2rem;
+    margin-right: 10px;
+    color: #b3b3b3;
+}
+
+input[type="range"]#volume-slider {
+    width: 50%;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #535353;
+    height: 5px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="range"]#volume-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 15px;

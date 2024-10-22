@@ -10,13 +10,14 @@ const artistName = document.getElementById('artist-name');
 const nextBtn = document.getElementById('next-btn'); 
 const prevBtn = document.getElementById('prev-btn'); 
 const background = document.getElementById('background');
+const volumeSlider = document.getElementById('volume-slider');
 
 let isPlaying = false;
 let currentTrackIndex = 0;
 
 // Artist backgrounds (add artist-specific backgrounds here)
 const artistBackgrounds = {
-    'Daft Punk': 'url(imgs/DPunk.jpg',
+    'Daft Punk': 'url(imgs/DPunk.jpg)',
     'Tame Impala': 'url(imgs/letithappen.jpg)'
     // Add more artist backgrounds as needed
 };
@@ -51,8 +52,18 @@ function loadTrack(index) {
     albumArt.src = track.albumArt;
     audioPlayer.src = track.src;
     
+    // Reset progress bar and time
+    progressBar.value = 0;
+    currentTimeElem.textContent = "0:00";
+    durationElem.textContent = "0:00";
+    
     // Update background based on artist
     updateBackground(track.artist);
+
+    // Preload metadata (like duration)
+    audioPlayer.addEventListener('loadedmetadata', () => {
+        durationElem.textContent = formatTime(audioPlayer.duration);
+    });
 }
 
 // Update background based on the artist
@@ -63,6 +74,11 @@ function updateBackground(artist) {
         background.style.backgroundImage = 'url(imgs/default-background.jpg)'; // Default background
     }
 }
+
+// Change volume based on slider input
+volumeSlider.addEventListener('input', (e) => {
+    audioPlayer.volume = e.target.value;
+});
 
 // Play or pause the audio
 playBtn.addEventListener('click', () => {
@@ -108,23 +124,28 @@ function formatTime(time) {
 audioPlayer.addEventListener('ended', () => {
     playIcon.textContent = 'play_arrow';
     isPlaying = false;
-    currentTrackIndex = (currentTrackIndex + 1) % tracks.length; // Loop back to the first track
-    loadTrack(currentTrackIndex);
-    audioPlayer.play();
+    nextTrack();  // Automatically play next track when current track ends
 });
 
 // Next track
-nextBtn.addEventListener('click', () => {
+nextBtn.addEventListener('click', nextTrack);
+
+// Function to play the next track
+function nextTrack() {
     currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
     loadTrack(currentTrackIndex);
     audioPlayer.play();
-});
+    playIcon.textContent = 'pause'; // Ensure the pause icon is displayed when track is playing
+    isPlaying = true;
+}
 
 // Previous track
 prevBtn.addEventListener('click', () => {
     currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
     loadTrack(currentTrackIndex);
     audioPlayer.play();
+    playIcon.textContent = 'pause'; // Ensure the pause icon is displayed when track is playing
+    isPlaying = true;
 });
 
 // Load the first track when the page loads
