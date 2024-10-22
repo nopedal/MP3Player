@@ -1,3 +1,4 @@
+/* General body styling */
 body {
     background-color: #121212;
     color: white;
@@ -7,9 +8,27 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    position: relative;
 }
 
+/* Dynamic background image */
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+    opacity: 0.3;
+}
+
+/* Player container styling */
 .player-container {
+    position: relative;
+    z-index: 1;
     background-color: #282828;
     border-radius: 20px;
     padding: 30px;
