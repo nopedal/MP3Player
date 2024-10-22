@@ -1,7 +1,13 @@
 <h1 align="center">Hi 👋, I'm Nikolas</h1>
 <h3 align="center">An upcoming Full-Stack Developer from Norway</h3>
 
+
 # Live Preview = https://mp-3-player-seven.vercel.app/
+
+![image](https://github.com/user-attachments/assets/bba450d0-0239-4f62-b933-0e333b186dd4)
+
+
+
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=nopedal&label=Profile%20views&color=0e75b6&style=flat" alt="nopedal" /> </p>
 
