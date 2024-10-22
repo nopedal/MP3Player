@@ -9,9 +9,17 @@ const trackTitle = document.getElementById('track-title');
 const artistName = document.getElementById('artist-name'); 
 const nextBtn = document.getElementById('next-btn'); 
 const prevBtn = document.getElementById('prev-btn'); 
+const background = document.getElementById('background');
 
 let isPlaying = false;
 let currentTrackIndex = 0;
+
+// Artist backgrounds (add artist-specific backgrounds here)
+const artistBackgrounds = {
+    'Daft Punk': 'url(imgs/DPunk.jpg',
+    'Tame Impala': 'url(imgs/letithappen.jpg)'
+    // Add more artist backgrounds as needed
+};
 
 // Track data
 const tracks = [
@@ -24,8 +32,8 @@ const tracks = [
     {
         title: "Let It Happen",
         artist: "Tame Impala",
-        albumArt: "imgs/LIH.jfif", // 
-        src: "music/Let It Happen - Tame Impala.mp3" // 
+        albumArt: "imgs/LIH.jfif", 
+        src: "music/Let It Happen - Tame Impala.mp3"
     },
     {
         title: "Get Lucky",
@@ -33,7 +41,6 @@ const tracks = [
         albumArt: "imgs/dp.jfif",
         src: "music/Get Lucky - Daft Punk.mp3"
     }
-    // Add more tracks as needed
 ];
 
 // Load the current track
@@ -41,8 +48,20 @@ function loadTrack(index) {
     const track = tracks[index];
     trackTitle.textContent = track.title;
     artistName.textContent = track.artist;
-    albumArt.src = track.albumArt; // Update the album art
-    audioPlayer.src = track.src; // Update the audio source
+    albumArt.src = track.albumArt;
+    audioPlayer.src = track.src;
+    
+    // Update background based on artist
+    updateBackground(track.artist);
+}
+
+// Update background based on the artist
+function updateBackground(artist) {
+    if (artistBackgrounds[artist]) {
+        background.style.backgroundImage = artistBackgrounds[artist];
+    } else {
+        background.style.backgroundImage = 'url(imgs/default-background.jpg)'; // Default background
+    }
 }
 
 // Play or pause the audio
@@ -59,14 +78,12 @@ playBtn.addEventListener('click', () => {
 
 // Update progress bar and current time
 audioPlayer.addEventListener('timeupdate', () => {
-    // Update progress bar
     const { currentTime, duration } = audioPlayer;
     if (duration) {
         const progressPercent = (currentTime / duration) * 100;
         progressBar.value = progressPercent;
     }
 
-    // Update current time and duration display
     currentTimeElem.textContent = formatTime(currentTime);
     if (duration) {
         durationElem.textContent = formatTime(duration);
@@ -87,28 +104,27 @@ function formatTime(time) {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
-// When the audio ends, reset the play button
+// When the audio ends, reset the play button and play the next track
 audioPlayer.addEventListener('ended', () => {
-    playIcon.textContent = 'play_arrow'; // Reset to play icon
+    playIcon.textContent = 'play_arrow';
     isPlaying = false;
-    // Automatically load the next track
     currentTrackIndex = (currentTrackIndex + 1) % tracks.length; // Loop back to the first track
     loadTrack(currentTrackIndex);
-    audioPlayer.play(); // Play the next track automatically
+    audioPlayer.play();
 });
 
 // Next track
 nextBtn.addEventListener('click', () => {
-    currentTrackIndex = (currentTrackIndex + 1) % tracks.length; // Loop to first track if at the end
+    currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
     loadTrack(currentTrackIndex);
-    audioPlayer.play(); // Play the next track automatically
+    audioPlayer.play();
 });
 
 // Previous track
 prevBtn.addEventListener('click', () => {
-    currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length; // Loop to last track if at the start
+    currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
     loadTrack(currentTrackIndex);
-    audioPlayer.play(); // Play the previous track automatically
+    audioPlayer.play();
 });
 
 // Load the first track when the page loads
