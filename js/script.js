@@ -31,7 +31,7 @@ const tracks = [
         title: "Get Lucky",
         artist: "Daft Punk",
         albumArt: "imgs/dp.jfif",
-        src: "music/Get Lucky - Daft Punk.mp3"
+        src: "music/Daft Punk - Get Lucky.mp3"
     }
     // Add more tracks as needed
 ];
